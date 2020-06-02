@@ -1,0 +1,301 @@
+html, body {
+    font-family: 'PF Encore Sans Pro', sans-serif;
+}
+body {
+    /* width: auto; */
+    background-color: green;
+    /* width: auto; */
+}
+.conatainer {
+    padding: 45px 5px 0 5px;
+    margin: 0 auto;
+}
+
+.awesomesolid {
+    font-family: 'Font Awesome 5 Pro Solid';
+}
+.bold {
+    font-family: 'PF Encore Sans Pro Bold';
+}
+.medium {
+    font-family: 'PF Encore Sans Pro Medium';
+}
+/*
+*** header
+*/
+header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 3px;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+.leftSide {
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+.leftSide > :nth-child(n) {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+.leftSide > :nth-child(2) {
+    margin: 0 5px;
+}
+.leftSide > :nth-child(n):hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.leftSide__searchBar {
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.leftSide__searchBar input {
+    margin-right: 15px;
+    background-color: transparent;
+    border: none;
+}
+.leftSide__searchBar button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: #fff;
+}
+.logo {
+    font-size: 30px;
+    font-style: italic;
+    color: rgb(182, 173, 173);
+}
+.logo:hover {
+    color: #fff;
+    cursor: pointer;
+}
+.rightSide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rightSide > :nth-child(1),
+.rightSide > :nth-child(2),
+.rightSide > :nth-child(3) {
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+.rightSide > :nth-child(1):hover,
+.rightSide > :nth-child(2):hover,
+.rightSide > :nth-child(3):hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.rightSide > :nth-child(2) {
+    margin: 0 5px;
+}
+.rightSide__profilePhoto {
+    background-color: grey;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+/*
+*** main
+*/
+main {
+    height: 100vh;
+    /* background-color: green; */
+    /* width: 100%; */
+}
+
+/*
+* navigation
+*/
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.navigation__leftSide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navigation__leftSide > :nth-child(n) {
+    padding: 10px;
+    /* border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.25); */
+    color: #fff;
+}
+.leftSide__favourite,
+.leftSide__personal,
+.leftSide__private {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+.inviteText {
+    padding: 10px;
+    color: #fff;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+.leftSide__favourite:hover,
+.leftSide__personal:hover,
+.leftSide__private:hover,
+.inviteText:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+.leftSide__invite {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.invite__profilePhoto {
+    background-color: grey;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.navigation__rightSide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navigation__rightSide > :nth-child(1) {
+    margin-right: 5px;
+}
+.navigation__rightSide > :nth-child(n) {
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+.navigation__rightSide > :nth-child(n):hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+.columns, .subcolumns {
+    display: flex;
+    align-items: flex-start;
+    /* flex-wrap: wrap; */
+}
+
+.columns > .subcolumns > div:nth-child(n) {
+    margin: 0 5px 5px;
+}
+
+.column {
+    width: 272px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    background-color: #ebecf0;
+    border-radius: 3px;
+    padding: 4px 6px;
+    user-select: none;
+}
+
+.column__headingMenu {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+.column__heading_change {
+    width: 91%;
+    border: none;
+    display: none;
+}
+.column__heading {
+    width: 91%;
+    display: block;
+}
+.column__menu {
+    padding: 3px;
+    width: 9%;
+    color: rgb(97, 94, 94);
+    border-radius: 3px;
+}
+.column__heading:hover {
+    cursor: pointer;
+}
+.column__menu:hover {
+    background-color: rgb(155, 144, 144);
+    color: rgb(43, 39, 39);
+    cursor: pointer;
+}
+.column__addCard {
+    padding: 7px;
+    color: grey;
+    border-radius: 3px;
+}
+.column__addCard:hover {
+    background-color: rgba(150, 148, 148, 0.712);
+    color: rgb(63, 60, 60);
+    cursor: pointer;
+}
+.columns__addColumn {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 8px 12px;
+    margin-left: 5px;
+    border-radius: 3px;
+}
+.columns__addColumn:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+
+/*** class's styles ***/
+.columnOptions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-left: 5px;
+    background-color: #ebecf0;
+    border-radius: 3px;
+    padding: 4px 6px;
+    user-select: none;
+    width: 272px;
+    height: 60px;
+}
+.columnName {
+    width: 100%;
+    padding: 4px;
+}
+.columnName:focus {
+    outline: 3px solid rgb(99, 99, 231);
+}
+.acceptBtn, .cancelBtn {
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    padding: 2px 6px;
+}
+.acceptBtn {
+    background-color: green;
+}
+.cancelBtn {
+    background-color: grey;
+    margin-left: 5px;
+}
+.acceptBtn:hover, .cancelBtn:hover {
+    cursor: pointer;
+}
+.acceptBtn:hover {
+    background-color: rgb(39, 180, 39);
+}
+.cancelBtn:hover {
+    background-color: rgb(124, 121, 121);
+}

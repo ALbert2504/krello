@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krello</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./fonts/fonts.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <div class="leftSide">
+            <a href="#" class="leftSide__menu awesomesolid">grip-horizontal</a>
+            <a href="#" class="leftSide__home awesomesolid">home</a>
+            <a href="#" class="leftSide__boards awesomesolid">
+                <span class="awesomesolid">clipboard-check</span> Boards
+            </a>
+            <div class="leftSide__searchBar">
+                <input type="text">
+                <button class="awesomesolid">search</button>
+            </div>
+        </div>
+        <h1 class="logo bold">Krello</h1>
+        <div class="rightSide">
+            <a href="#" class="rightSider__add awesomesolid">plus</a>
+            <a href="#" class="rightSider__info awesomesolid">info</a>
+            <a href="#" class="rightSider__notif awesomesolid">bell</a>
+            <div class="rightSide__profilePhoto"></div>
+        </div>
+    </header>
+    <main>
+        <div class="conatainer">
+            <div class="navigation">
+                <div class="navigation__leftSide">
+                    <h2 class="leftSide__boardName medium">
+                        Board
+                    </h2>
+                    <p class="leftSide__favourite awesomesolid">star</p>
+                    <span class="leftSide__separator awesomesolid">grip-lines-vertical</span>
+                    <p class="leftSide__personal">Personal</p>
+                    <span class="leftSide__separator awesomesolid">grip-lines-vertical</span>
+                    <p class="leftSide__private">
+                        <span class="awesomesolid">lock</span> Private
+                    </p>
+                    <span class="leftSide__separator awesomesolid">grip-lines-vertical</span>
+                    <div class="leftSide__invite">
+                        <div class="invite__profilePhoto"></div>
+                        <p class="inviteText">Invite</p>
+                    </div>
+                </div>
+                <div class="navigation__rightSide">
+                    <p class="rightSide__butler">Butler</p>
+                    <p class="rightSide__menu">
+                        <span class="awesomesolid">bars</span> Menu
+                    </p>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="subcolumns">
+                    <div class="column" draggable="true">
+                        <div class="column__headingMenu">
+                            <input type="text" class="column__heading_change">
+                            <h3 class="column__heading">
+                                To do
+                            </h3>
+                            <span class="column__menu awesomesolid">ellipsis-h</span>
+                        </div>
+                        <div class="column__cards">
+    
+                        </div>
+                        <span class="column__addCard">+ Add card</span>
+                    </div>
+                    <div class="column" draggable="true">
+                        <div class="column__headingMenu">
+                            <input type="text" class="column__heading_change">
+                            <h3 class="column__heading">
+                                Doing
+                            </h3>
+                            <span class="column__menu awesomesolid">ellipsis-h</span>
+                        </div>
+                        <div class="column__cards">
+    
+                        </div>
+                        <span class="column__addCard">+ Add card</span>
+                    </div>
+                    <div class="column" draggable="true">
+                        <div class="column__headingMenu">
+                            <input type="text" class="column__heading_change">
+                            <h3 class="column__heading">
+                                Done
+                            </h3>
+                            <span class="column__menu awesomesolid">ellipsis-h</span>
+                        </div>
+                        <div class="column__cards">
+    
+                        </div>
+                        <span class="column__addCard">+ Add card</span>
+                    </div>
+                </div>
+                <span class="columns__addColumn">
+                    + Add column
+                </span>
+            </div>
+        </div>
+    </main>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
