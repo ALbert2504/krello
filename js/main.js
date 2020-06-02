@@ -7,6 +7,8 @@ const $addColumnBtn = document.querySelector('.columns__addColumn');
 const $Columns = document.querySelector('.columns')
 let $subColumns = document.querySelector('.subcolumns');
 
+let columnsCount = $columns.length;
+
 class Column {
     constructor() {
 
@@ -89,6 +91,9 @@ class Column {
                 
                 $columns = document.querySelectorAll('.column');
                 console.log($columns);
+
+                columnsCount++;
+                $columns[$columns.length - 1].setAttribute('id', `col${columnsCount}`);
                 
             }
         });
@@ -143,15 +148,17 @@ function elemPos(currentXPos) {
 
     for(let i = 0; i < $columns.length; i++) {
         if($columns[i].xPos < currentXPos) {
-            var nodeRight = $columns[i];
+            var nodeRight = document.getElementById($columns[i].id);
             selectedNodePos = i + 1;
         }
     
-        if(typeof nodeRight == 'undefined') {
-            selectedNodePos = 0;
-        }
+
 
         console.log(selectedNodePos);
+    }
+
+    if(typeof nodeRight == 'undefined') {
+        selectedNodePos = 0;
     }
 
 }
