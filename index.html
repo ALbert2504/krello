@@ -57,8 +57,8 @@
                 </div>
             </div>
             <div class="columns">
-                <div class="subcolumns">
-                    <div class="column" draggable="true" id="col1">
+                <div class="subcolumns" data-id-columns>
+                    <div class="column" data-column-id="1" draggable="true" id="col1">
                         <div class="column__headingMenu">
                             <input type="text" class="column__heading_change">
                             <h3 class="column__heading">
@@ -66,12 +66,12 @@
                             </h3>
                             <span class="column__menu awesomesolid">ellipsis-h</span>
                         </div>
-                        <div class="column__cards" data-id-col="1">
+                        <div class="column__cards" data-cards>
     
                         </div>
                         <span data-action-addNote class="column__addCard">+ Add card</span>
                     </div>
-                    <div class="column" draggable="true" id="col2">
+                    <div class="column" data-column-id="2" draggable="true" id="col2">
                         <div class="column__headingMenu">
                             <input type="text" class="column__heading_change">
                             <h3 class="column__heading">
@@ -79,12 +79,12 @@
                             </h3>
                             <span class="column__menu awesomesolid">ellipsis-h</span>
                         </div>
-                        <div class="column__cards" data-id-col="2">
+                        <div class="column__cards" data-cards>
     
                         </div>
                         <span data-action-addNote class="column__addCard">+ Add card</span>
                     </div>
-                    <div class="column" draggable="true" id="col3">
+                    <div class="column" draggable="true" data-column-id="3">
                         <div class="column__headingMenu">
                             <input type="text" class="column__heading_change">
                             <h3 class="column__heading">
@@ -92,13 +92,13 @@
                             </h3>
                             <span class="column__menu awesomesolid">ellipsis-h</span>
                         </div>
-                        <div class="column__cards" data-id-col="3">
+                        <div class="column__cards" data-cards>
     
                         </div>
                         <span data-action-addNote class="column__addCard">+ Add card</span>
                     </div>
                 </div>
-                <span  class="columns__addColumn">
+                <span  class="columns__addColumn" data-action-addColumn>
                     + Add column
                 </span>
             </div>

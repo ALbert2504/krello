@@ -310,14 +310,19 @@ main {
     margin-bottom: 3px;
     border-radius: 3px;
     width: 100%;
-    padding: 3px;
+    padding: 6px;
     /* box-shadow: #333 0px 1px 0px 1px; */
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
 }
+.card:hover {
+    cursor: pointer;
+    background-color: rgb(206, 201, 201);
+}
 .card__content {
     width: 90%;
+    overflow-wrap: break-word;
 }
 .card__name {
     width: 100%;
@@ -348,3 +353,14 @@ main {
 .cardCancel__btn:hover {
     background-color: rgb(124, 121, 121);
 }
+
+/***** drag and drop *****/
+.dragging {
+    opacity: 0.1;
+}
+
+.under {
+    /* opacity: 0.7; */
+    background-color: red;
+}
+/*************************/
