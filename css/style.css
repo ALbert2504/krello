@@ -327,9 +327,12 @@ main {
 .card__name {
     width: 100%;
     padding: 3px;
-    resize: none;
+    resize: vertical;
     /* height: initial; */
     font-family: 'PF Encore Sans Pro', sans-serif;
+}
+.card__name:focus {
+    outline: 3px solid rgb(99, 99, 231);
 }
 .cardAccept__btn, .cardCancel__btn {
     border: none;

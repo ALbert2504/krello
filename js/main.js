@@ -57,7 +57,7 @@ function dragleave_Card(e) {
     this.classList.remove('under');
 }
 function drop_Card(e) {
-    e.stopPropagation();
+    // e.stopPropagation();
     if(this === draggedCard) {
         return;
     }
@@ -138,7 +138,7 @@ function columnProcces(columnElem) {
 
     columnElem.addEventListener('drop', function (e) {
         if(draggedCard) {
-            return columnElem.querySelector('[data-cards]').appendChild(draggedCard);
+            columnElem.querySelector('[data-cards]').appendChild(draggedCard);
         }
     });
 }
