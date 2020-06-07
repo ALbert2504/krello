@@ -219,6 +219,10 @@ main {
     width: 91%;
     display: block;
 }
+.column__heading:focus {
+    outline: 3px solid rgb(99, 99, 231);
+
+}
 .column__menu {
     padding: 3px;
     width: 9%;

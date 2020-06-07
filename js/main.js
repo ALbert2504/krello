@@ -55,9 +55,10 @@ function dragleave_Card(e) {
         return;
     }
     this.classList.remove('under');
+    console.log(e);
 }
 function drop_Card(e) {
-    // e.stopPropagation();
+    e.stopPropagation();
     if(this === draggedCard) {
         return;
     }
@@ -66,11 +67,11 @@ function drop_Card(e) {
         const card = Array.from(this.parentElement.querySelectorAll('.card'));
         let indexA = card.indexOf(this);
         let indexB = card.indexOf(draggedCard);
-
+        console.log(indexA, indexB);
         if(indexA < indexB) {
             this.parentElement.insertBefore(draggedCard, this);
         } else {
-            this.parentElement.insertBefore(draggedCard, this.nextElementSibling);
+            this.parentElement.insertBefore(draggedCard, this);
         }   
     } else {
         this.parentElement.insertBefore(draggedCard, this);
@@ -105,17 +106,24 @@ function columnProcces(columnElem) {
         cardCancel.innerHTML = 'Cancel';
         cardBox.appendChild(cardCancel);
 
+        columnElem.querySelector('[data-action-addnote]').style.display = 'none';
+
+
         cardCancel.addEventListener('click', () => {
             cardBox.removeChild(cardAccept);
             cardBox.removeChild(cardCancel);
             cardBox.removeChild(cardName);
+        columnElem.querySelector('[data-action-addnote]').style.display = 'block';
         });
+
 
         cardAccept.addEventListener('click', () => {
             if(!cardName.value) {
                 cardBox.removeChild(cardAccept);
                 cardBox.removeChild(cardCancel);
                 cardBox.removeChild(cardName);
+        columnElem.querySelector('[data-action-addnote]').style.display = 'none';
+        columnElem.querySelector('[data-action-addnote]').style.display = 'block';
             } else {
                 const cardContent = document.createElement('p');
                 cardContent.innerHTML = cardName.value;
@@ -125,11 +133,28 @@ function columnProcces(columnElem) {
                 cardBox.removeChild(cardAccept);
                 cardBox.removeChild(cardCancel);
                 cardBox.removeChild(cardName);
-
+                columnElem.querySelector('[data-action-addnote]').style.display = 'block';
                 cardPorcess(card);
             }
 
         });  
+    });
+    
+    let prevValue = null;
+
+    columnElem.querySelector('.column__heading').addEventListener('mouseup', function(e) {
+        prevValue = this.innerHTML;
+        this.setAttribute('contenteditable', 'true');
+        this.focus();
+        this.select();
+
+    });
+
+    columnElem.querySelector('.column__heading').addEventListener('blur', function(e) {
+        if(this.innerHTML === '') {
+            this.innerHTML = prevValue;
+        }
+        this.removeAttribute('contenteditable');
     });
 
     columnElem.addEventListener('dragover', function (e) {
@@ -137,6 +162,7 @@ function columnProcces(columnElem) {
     });
 
     columnElem.addEventListener('drop', function (e) {
+        e.stopPropagation();
         if(draggedCard) {
             columnElem.querySelector('[data-cards]').appendChild(draggedCard);
         }
