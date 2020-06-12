@@ -209,19 +209,26 @@ main {
     align-items: center;
     width: 100%;
     justify-content: space-between;
+    margin-bottom: 4px;
 }
 .column__heading_change {
     width: 91%;
     border: none;
     display: none;
+    border-radius: 3px;
+    padding: 4.5px;
+    font-size: 16px;
+    font-family: inherit;
+}
+.column__heading_change:focus {
+    outline: 3px solid rgb(99, 99, 231);
+
 }
 .column__heading {
     width: 91%;
     display: block;
-}
-.column__heading:focus {
-    outline: 3px solid rgb(99, 99, 231);
-
+    padding: 6px;
+    font-size: 16px;
 }
 .column__menu {
     padding: 3px;
@@ -317,17 +324,14 @@ main {
     padding: 6px;
     /* box-shadow: #333 0px 1px 0px 1px; */
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
 }
 .card:hover {
     cursor: pointer;
     background-color: rgb(206, 201, 201);
 }
-.card__content {
-    width: 90%;
-    overflow-wrap: break-word;
-}
+
 .card__name {
     width: 100%;
     padding: 3px;
@@ -359,6 +363,21 @@ main {
 }
 .cardCancel__btn:hover {
     background-color: rgb(124, 121, 121);
+}
+.card__content {
+    width: 90%;
+    overflow-wrap: break-word;
+}
+.card__changeBtn {
+    font-size: 11px;
+    color: rgb(87, 84, 84);
+    padding: 5px;
+    border-radius: 3px;
+    align-self: flex-start;
+}
+.card__changeBtn:hover {
+    background-color: rgb(151, 147, 147);
+    
 }
 
 /***** drag and drop *****/

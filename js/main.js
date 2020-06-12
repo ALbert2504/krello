@@ -15,7 +15,7 @@ let cardCount = 1;
 document.querySelectorAll('.card').forEach(cardPorcess);
 
 function cardPorcess(cardElem) {
-    /***** events with cards *****/
+    /***** drag and drop events of cards *****/
     cardElem.addEventListener('dragstart', dragstart_Card);
     cardElem.addEventListener('dragend', dragend_Card);
     cardElem.addEventListener('dragenter', dragenter_Card);
@@ -23,9 +23,15 @@ function cardPorcess(cardElem) {
     cardElem.addEventListener('dragleave', dragleave_Card);
     cardElem.addEventListener('drop', drop_Card);
 
+    cardElem.querySelector('.card__changeBtn').addEventListener('click', e => {
+        alert('In process :D');
+    });
 }
 
-/******* drag and drop events *******/
+
+
+
+/******* cards drag and drop functions *******/
 let draggedCard = null;
 
 function dragstart_Card(e) {
@@ -55,7 +61,6 @@ function dragleave_Card(e) {
         return;
     }
     this.classList.remove('under');
-    console.log(e);
 }
 function drop_Card(e) {
     e.stopPropagation();
@@ -67,11 +72,10 @@ function drop_Card(e) {
         const card = Array.from(this.parentElement.querySelectorAll('.card'));
         let indexA = card.indexOf(this);
         let indexB = card.indexOf(draggedCard);
-        console.log(indexA, indexB);
         if(indexA < indexB) {
             this.parentElement.insertBefore(draggedCard, this);
         } else {
-            this.parentElement.insertBefore(draggedCard, this);
+            this.parentElement.insertBefore(draggedCard, this.nextElementSibling);
         }   
     } else {
         this.parentElement.insertBefore(draggedCard, this);
@@ -79,8 +83,36 @@ function drop_Card(e) {
 }
 /*************************************/
 
+
+
+
+let draggedColumn = null;
 /************* adding cards *************/
 function columnProcces(columnElem) {
+
+    columnElem.querySelector('.column__heading').addEventListener('click', () => {
+        const colHeadingChange = columnElem.querySelector('.column__heading_change');
+        const colHeading = columnElem.querySelector('.column__heading');
+        var colHeadingPrevValue = colHeading.innerText;
+        
+        colHeading.style.display = 'none';
+        colHeadingChange.style.display = 'block';
+        colHeadingChange.value = colHeadingPrevValue;
+        colHeadingChange.focus();
+        colHeadingChange.select();
+
+        colHeadingChange.addEventListener('blur', () => {
+            if(!colHeadingChange.value) {
+                colHeadingChange.style.display = 'none';
+                colHeading.style.display = 'block';
+                colHeading.innerHTML = colHeadingPrevValue;
+            } else {
+                colHeadingChange.style.display = 'none';
+                colHeading.style.display = 'block';
+                colHeading.innerText = colHeadingChange.value;
+            }
+        })
+    });
     
     columnElem.querySelector('[data-action-addNote]').addEventListener('click', e => {
         const card = document.createElement('div');
@@ -113,7 +145,7 @@ function columnProcces(columnElem) {
             cardBox.removeChild(cardAccept);
             cardBox.removeChild(cardCancel);
             cardBox.removeChild(cardName);
-        columnElem.querySelector('[data-action-addnote]').style.display = 'block';
+            columnElem.querySelector('[data-action-addnote]').style.display = 'block';
         });
 
 
@@ -122,13 +154,18 @@ function columnProcces(columnElem) {
                 cardBox.removeChild(cardAccept);
                 cardBox.removeChild(cardCancel);
                 cardBox.removeChild(cardName);
-        columnElem.querySelector('[data-action-addnote]').style.display = 'none';
-        columnElem.querySelector('[data-action-addnote]').style.display = 'block';
+                columnElem.querySelector('[data-action-addnote]').style.display = 'none';
+                columnElem.querySelector('[data-action-addnote]').style.display = 'block';
             } else {
+                //card appending
                 const cardContent = document.createElement('p');
                 cardContent.innerHTML = cardName.value;
                 cardContent.setAttribute('class', 'card__content');
+                const cardChangeBtn = document.createElement('span');
+                cardChangeBtn.setAttribute('class', 'card__changeBtn awesomesolid');
+                cardChangeBtn.innerHTML = 'pencil-alt';
                 card.appendChild(cardContent);
+                card.appendChild(cardChangeBtn);
                 cardBox.appendChild(card);
                 cardBox.removeChild(cardAccept);
                 cardBox.removeChild(cardCancel);
@@ -139,35 +176,51 @@ function columnProcces(columnElem) {
 
         });  
     });
-    
-    let prevValue = null;
 
-    columnElem.querySelector('.column__heading').addEventListener('mouseup', function(e) {
-        prevValue = this.innerHTML;
-        this.setAttribute('contenteditable', 'true');
-        this.focus();
-        this.select();
 
+    // column drag and drop events
+    columnElem.addEventListener('dragstart', function(e) {
+        draggedColumn = this;
+        console.log(this);
     });
-
-    columnElem.querySelector('.column__heading').addEventListener('blur', function(e) {
-        if(this.innerHTML === '') {
-            this.innerHTML = prevValue;
+    columnElem.addEventListener('dragend', function(e) {
+        draggedColumn = null;
+    });
+    columnElem.addEventListener('dragenter', function(e) {
+        if(this === draggedColumn) {
+            return;
         }
-        this.removeAttribute('contenteditable');
+        console.log(this);
     });
-
     columnElem.addEventListener('dragover', function (e) {
         e.preventDefault();
+        if(this === draggedColumn) {
+            return;
+        }
     });
-
+    columnElem.addEventListener('dragleave', function(e) {
+        if(this === draggedColumn) {
+            return;
+        }
+    });
     columnElem.addEventListener('drop', function (e) {
         e.stopPropagation();
         if(draggedCard) {
             columnElem.querySelector('[data-cards]').appendChild(draggedCard);
+        } else if(draggedColumn) {
+            const column = Array.from(this.parentElement.querySelectorAll('.column'));
+            let indexA = column.indexOf(this);
+            let indexB = column.indexOf(draggedColumn);
+            if(indexA < indexB) {
+                this.parentElement.insertBefore(draggedColumn, this);
+            } else {
+                this.parentElement.insertBefore(draggedColumn, this.nextElementSibling);
+            }   
         }
     });
 }
+
+
 
 
 
@@ -210,7 +263,7 @@ $addColumnBtn.addEventListener('click', e => {
     btn.addEventListener('click', e => {
         e.preventDefault();
         if(!inp.value) {
-            alert('Please choose a name for the board');
+            alert('Please choose a name for the board.');
         } else {
             const column = document.createElement('div');
             column.setAttribute('class', 'column');
@@ -223,7 +276,7 @@ $addColumnBtn.addEventListener('click', e => {
             const colHeadingMenu = document.createElement('div');
             colHeadingMenu.setAttribute('class', 'column__headingMenu');
 
-            const ColHeadingChange = document.createElement('div');
+            const ColHeadingChange = document.createElement('input');
             ColHeadingChange.setAttribute('class', 'column__heading_change');
 
             const colHeading = document.createElement('h3');
