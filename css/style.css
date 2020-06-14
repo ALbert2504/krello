@@ -317,6 +317,7 @@ main {
 
 /****** new card styling ********/
 .card {
+    position: relative;
     background-color: #fff;
     margin-bottom: 3px;
     border-radius: 3px;
@@ -326,6 +327,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: margin .4s linear;
 }
 .card:hover {
     cursor: pointer;
@@ -365,18 +367,25 @@ main {
     background-color: rgb(124, 121, 121);
 }
 .card__content {
-    width: 90%;
+    width: 100%;
     overflow-wrap: break-word;
 }
 .card__changeBtn {
+    position: absolute;
     font-size: 11px;
     color: rgb(87, 84, 84);
     padding: 5px;
     border-radius: 3px;
     align-self: flex-start;
+    right: 2px;
+    top: 2px;
+    display: none;
+}
+.card:hover .card__changeBtn {
+    display: block;
 }
 .card__changeBtn:hover {
-    background-color: rgb(151, 147, 147);
+    background-color: rgba(151, 147, 147, 0.719);
     
 }
 
@@ -387,6 +396,7 @@ main {
 
 .under {
     /* opacity: 0.7; */
-    background-color: red;
+    background-color: yellow;
+    /* margin-top: 40px; */
 }
 /*************************/

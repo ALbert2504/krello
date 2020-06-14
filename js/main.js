@@ -48,23 +48,49 @@ function dragenter_Card(e) {
     if(this === draggedCard) {
         return;
     }
-    this.classList.add('under');
+
+    if(draggedCard) {
+        this.classList.add('under');
+        if(e.target.tagName === 'P') {
+            this.classList.add('under');
+        }
+    }
 }
 function dragover_Card(e) {
     e.preventDefault();
     if(this === draggedCard) {
         return;
     }
+    if(draggedCard) {
+        if(e.target.tagName === 'P') {
+            this.classList.add('under');
+        }
+    }
+
+    // console.log(e.target.tagName);
 }
 function dragleave_Card(e) {
     if(this === draggedCard) {
         return;
     }
     this.classList.remove('under');
+    if(draggedCard) {
+        if(e.target.tagName === 'P') {
+            this.classList.add('under');
+        }
+    }
+
 }
 function drop_Card(e) {
-    e.stopPropagation();
+    if(draggedCard) {
+        e.stopPropagation();
+    }
     if(this === draggedCard) {
+        return;
+    }
+
+    if(!draggedCard) {
+        this.classList.remove('under');
         return;
     }
 
@@ -181,7 +207,6 @@ function columnProcces(columnElem) {
     // column drag and drop events
     columnElem.addEventListener('dragstart', function(e) {
         draggedColumn = this;
-        console.log(this);
     });
     columnElem.addEventListener('dragend', function(e) {
         draggedColumn = null;
@@ -190,7 +215,6 @@ function columnProcces(columnElem) {
         if(this === draggedColumn) {
             return;
         }
-        console.log(this);
     });
     columnElem.addEventListener('dragover', function (e) {
         e.preventDefault();
