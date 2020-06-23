@@ -23,8 +23,59 @@ function cardPorcess(cardElem) {
     cardElem.addEventListener('dragleave', dragleave_Card);
     cardElem.addEventListener('drop', drop_Card);
 
-    cardElem.querySelector('.card__changeBtn').addEventListener('click', e => {
-        alert('In process :D');
+    //card editting porcess
+    let clickedPencil = null;
+    const $cardEditBtn = cardElem.querySelector('.card__changeBtn');
+    $cardEditBtn.addEventListener('click', function() {
+        clickedPencil = this;
+        
+        const cardPos = $cardEditBtn.parentElement.getBoundingClientRect();
+        
+        let cardLeft = cardPos.left;
+        let cardTop = cardPos.top;
+        let cardWidth = cardPos.width;
+        let cardHeight = cardPos.height;
+        
+        const $cardNameChangeTxtArea = document.createElement('textarea');
+        $cardNameChangeTxtArea.setAttribute('class', 'card__nameChange_txtArea');
+        $cardNameChangeTxtArea.style = `
+            top: ${cardTop}px;
+            left: ${cardLeft}px;
+            width: ${cardWidth}px;
+            height: ${cardHeight + 45}px
+        `;
+        
+        this.remove();
+
+        let cardPrevValue = cardElem.querySelector('.card__content').textContent;
+        
+
+        const $bodyHalfOpacityBlackBg = document.createElement('div');
+        $bodyHalfOpacityBlackBg.setAttribute('class', 'body__halfOpacity_blackBg');
+        
+        document.body.insertAdjacentElement('afterbegin', $bodyHalfOpacityBlackBg);
+        document.body.insertAdjacentElement('afterbegin', $cardNameChangeTxtArea);
+        $cardNameChangeTxtArea.value = cardPrevValue;
+        $cardNameChangeTxtArea.focus();
+        $cardNameChangeTxtArea.select();
+
+        $cardNameChangeTxtArea.addEventListener('blur', () => {
+            if(!$cardNameChangeTxtArea.value) {
+                cardElem.querySelector('.card__content')
+                    .innerText = cardPrevValue;
+                $cardNameChangeTxtArea.remove();
+                $bodyHalfOpacityBlackBg.remove();
+                cardElem.insertAdjacentElement('afterbegin', this); //this === pencil
+                clickedPencil = null;
+            } else {
+                cardElem.querySelector('.card__content')
+                    .innerText = $cardNameChangeTxtArea.value;
+                $cardNameChangeTxtArea.remove();
+                $bodyHalfOpacityBlackBg.remove();
+                cardElem.insertAdjacentElement('afterbegin', this); //this === pencil
+                clickedPencil = null;
+            }
+        });
     });
 }
 
@@ -116,6 +167,7 @@ let draggedColumn = null;
 /************* adding cards *************/
 function columnProcces(columnElem) {
 
+    //header changing
     columnElem.querySelector('.column__heading').addEventListener('click', () => {
         const colHeadingChange = columnElem.querySelector('.column__heading_change');
         const colHeading = columnElem.querySelector('.column__heading');
@@ -140,6 +192,8 @@ function columnProcces(columnElem) {
         })
     });
     
+
+    //adding notes
     columnElem.querySelector('[data-action-addNote]').addEventListener('click', e => {
         const card = document.createElement('div');
         card.setAttribute('class', 'card');
@@ -199,8 +253,9 @@ function columnProcces(columnElem) {
                 columnElem.querySelector('[data-action-addnote]').style.display = 'block';
                 cardPorcess(card);
             }
-
         });  
+
+
     });
 
 
@@ -241,6 +296,28 @@ function columnProcces(columnElem) {
                 this.parentElement.insertBefore(draggedColumn, this.nextElementSibling);
             }   
         }
+    });
+
+    const columnConfigs = document.createElement('div');
+    const columnConfigBtn = columnElem.querySelector('.column__menu');
+    columnConfigBtn.addEventListener('click', function() {
+
+        const ConfigBtnPos = this.getBoundingClientRect();
+        let configBtnLeft = ConfigBtnPos.left;
+        let configBtnTop = ConfigBtnPos.top;
+
+        columnConfigs.style = `
+            left: ${configBtnLeft}px;
+        `;
+
+        var currentColumn = this.parentElement.parentElement;
+        
+        columnConfigs.setAttribute('class', 'column__configs');
+
+        currentColumn.insertAdjacentElement('afterbegin', columnConfigs);
+
+        
+
     });
 }
 
@@ -296,7 +373,6 @@ $addColumnBtn.addEventListener('click', e => {
             columnsCount++;
             column.style.marginLeft = '5px';
 
-
             const colHeadingMenu = document.createElement('div');
             colHeadingMenu.setAttribute('class', 'column__headingMenu');
 
@@ -333,11 +409,8 @@ $addColumnBtn.addEventListener('click', e => {
             $subColumns.removeChild(columnOptions);
             $addColumnBtn.style.display = 'block';
             
-            // $columns = document.querySelectorAll('.column');
-            // console.log($columns);
             columnProcces(column);
 
         }
     });
 });
-
