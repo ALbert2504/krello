@@ -20,6 +20,10 @@ body {
 .medium {
     font-family: 'PF Encore Sans Pro Medium';
 }
+.light {
+    font-family: 'PF Encore Sans Pro Light';
+}
+
 /*
 *** header
 */
@@ -427,8 +431,41 @@ main {
 .column__configs {
     position: absolute;
     width: 304px;
-    padding: 5px;
+    padding: 5px 0;
     background-color: #fff;
     top: 30px;
     z-index: 3;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.configs__heading {
+    align-self: center;
+}
+.configs__separator {
+    width: 90%;
+    background-color: #ccc;
+    padding: 1px 0;
+    margin: 3px 0;
+    align-self: center;
+}
+.configs__closeBtn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: #ccc;
+}
+.configs__closeBtn:hover {
+    cursor: pointer;
+    color: #bbb;
+}
+.configs__action {
+    padding: 5px 3px;
+    width: 100%;
+}
+.configs__action:hover {
+    cursor: pointer;
+    background-color: #ccc;
 }
